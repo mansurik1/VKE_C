@@ -132,9 +132,9 @@ int safe_unsigned_input(FILE* input_file, FILE* output_file, unsigned* num) {
     while (safe_unsigned_convert(string, string_length, num) == FORMAT_ERROR) {
         display_notification(output_file, FORMAT_ERROR);
 
+        free(string);
         error = safe_string_input(input_file, output_file, &string, &string_length);
         if (error != NO_ERROR) {
-            free(string);
             return error;
         }
     }
@@ -157,9 +157,9 @@ int safe_float_input(FILE* input_file, FILE* output_file, float* num) {
     while (safe_float_convert(string, string_length, num) == FORMAT_ERROR) {
         display_notification(output_file, FORMAT_ERROR);
 
+        free(string);
         error = safe_string_input(input_file, output_file, &string, &string_length);
         if (error != NO_ERROR) {
-            free(string);
             return error;
         }
     }
