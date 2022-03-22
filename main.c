@@ -20,22 +20,27 @@ int main(void) {
     for (size_t i = 0; i < number_of_flights; ++i) {
         printf("\nPlease enter the flight code of the flight number %zu -> ", i + 1);
         if ((error = safe_string_input(stdin, stdout, &(flights[i].flight_code), NULL)) != NO_ERROR) {
+            free_flights_memory(flights, number_of_flights);
             return error;
         }
         printf("Please enter the departure airport code of the flight number %zu -> ", i + 1);
         if ((error = safe_string_input(stdin, stdout, &(flights[i].departure_airport_code), NULL)) != NO_ERROR) {
+            free_flights_memory(flights, number_of_flights);
             return error;
         }
         printf("Please enter the arrival airport code of the flight number %zu -> ", i + 1);
         if ((error = safe_string_input(stdin, stdout, &(flights[i].arrival_airport_code), NULL)) != NO_ERROR) {
+            free_flights_memory(flights, number_of_flights);
             return error;
         }
         printf("Please enter the duration of the flight number %zu (in minutes) -> ", i + 1);
         if ((error = safe_unsigned_input(stdin, stdout, &(flights[i].flight_duration))) != NO_ERROR) {
+            free_flights_memory(flights, number_of_flights);
             return error;
         }
         printf("Please enter the flight_cost of the flight number %zu (in USD) -> ", i + 1);
         if ((error = safe_float_input(stdin, stdout, &(flights[i].flight_cost))) != NO_ERROR) {
+            free_flights_memory(flights, number_of_flights);
             return error;
         }
     }
