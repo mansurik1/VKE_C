@@ -53,10 +53,13 @@ int main(void) {
 
     printf("\nPlease enter the departure airport code -> ");
     if ((error = safe_string_input(stdin, stdout, &dep_airport, NULL)) != NO_ERROR) {
+        free_flights_memory(flights, number_of_flights);
         return error;
     }
     printf("Please enter the arrival airport code -> ");
     if ((error = safe_string_input(stdin, stdout, &arr_airport, NULL)) != NO_ERROR) {
+        free(dep_airport);
+        free_flights_memory(flights, number_of_flights);
         return error;
     }
 
@@ -65,6 +68,10 @@ int main(void) {
     if (find_best_flights(dep_airport, arr_airport, flights, number_of_flights, &minimal_duration_flight_index,
                           &minimal_cost_flight_index) == NOT_FOUND_ERROR) {
         printf("\nPair of specified airports has not been found.");
+        
+        free(dep_airport);
+        free(arr_airport);
+        free_flights_memory(flights, number_of_flights);
         return NOT_FOUND_ERROR;
     }
 
@@ -73,10 +80,10 @@ int main(void) {
 
     printf("\nMost advantageous air ticket:\n");
     print_flight(stdout, flights, minimal_cost_flight_index);
-
-    free_flights_memory(flights, number_of_flights);
+    
     free(dep_airport);
     free(arr_airport);
+    free_flights_memory(flights, number_of_flights);
 
     return NO_ERROR;
 }
