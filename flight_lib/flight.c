@@ -134,6 +134,7 @@ int safe_unsigned_input(FILE* input_file, FILE* output_file, unsigned* num) {
 
         error = safe_string_input(input_file, output_file, &string, &string_length);
         if (error != NO_ERROR) {
+            free(string);
             return error;
         }
     }
@@ -158,6 +159,7 @@ int safe_float_input(FILE* input_file, FILE* output_file, float* num) {
 
         error = safe_string_input(input_file, output_file, &string, &string_length);
         if (error != NO_ERROR) {
+            free(string);
             return error;
         }
     }
