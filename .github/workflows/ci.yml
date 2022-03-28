@@ -1,8 +1,0 @@
-on: push
-
-jobs:
-  TestCoverage:
-    runs-on: ubuntu-latest
-    container: mans02/hw-1
-    steps:
-        - run: cd ../../../HW1 && cmake -DBUILD_TESTS=ON -B build . && cd build && cmake --build . && ./tests/flight_test
