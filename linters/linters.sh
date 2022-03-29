@@ -23,7 +23,7 @@ function check_log() {
 
 print_header "RUN cppcheck"
 tree
-check_log "cppcheck --enable=all --inconclusive --error-exitcode=1 -I/HW1/flight_lib -I/HW1 --suppress=missingIncludeSystem /HW1/flight_lib/ /HW1/*.c" "\(information\)"
+check_log "cppcheck --enable=all --inconclusive --error-exitcode=1 -Iflight_lib -I/HW1 --suppress=missingIncludeSystem flight_lib *.c" "\(information\)"
 
 print_header "RUN clang-tidy"
 check_log "clang-tidy /HW1/*.c /HW1/flight_lib/*.c /HW1/flight_lib/*.h -warnings-as-errors=* -extra-arg=-std=c99 -- -I/HW1/flight_lib/" "Error (?:reading|while processing)"
