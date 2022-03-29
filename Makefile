@@ -6,3 +6,4 @@ configure:
 
 build:
 	cmake --build ./build
+	ls -la build
