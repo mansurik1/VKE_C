@@ -18,3 +18,14 @@ jobs:
 
       - name: Build
         run: make build
+
+  Test:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [Build]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Launch Tests
+        run ./build/tests/flight_lib
