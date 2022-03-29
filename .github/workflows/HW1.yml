@@ -23,14 +23,14 @@ jobs:
         run: |
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
           cd ${{github.workspace}}
-#          ls -la
-#          cd build
-#          ls -la
+          ls -la
+          cd build
+          ls -la
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          path: build
+          path: ${{github.workspace}}/build
 #
 #      - name: Test
 #        run: |
