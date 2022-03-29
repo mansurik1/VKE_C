@@ -11,5 +11,5 @@ test:
 	chmod +x build/tests/flight_test
 	./build/tests/flight_test
 	# Analyzing coverage
-	#lcov -t "tests/flight_test" -o coverage.info -c -d flight_lib
-	tree
+	lcov -t "build/tests/flight_test" -o build/coverage.info -c -d build/flight_lib
+	tree build
