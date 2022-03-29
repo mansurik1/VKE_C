@@ -9,7 +9,7 @@ env:
 
 jobs:
 
-  build:
+  Build:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
 
@@ -23,7 +23,7 @@ jobs:
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
       - name: Test
-#        working-directory: ${{github.workspace}}/build/tests
+        working-directory: ${{github.workspace}}
         run: |
           cd ..
-          ls -la
+#          ls -la
