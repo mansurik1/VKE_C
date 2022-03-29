@@ -1,4 +1,4 @@
-.PHONY: configure build test
+.PHONY: configure build test lint
 
 configure:
 	cmake -DBUILD_TESTS=on -B build
@@ -13,3 +13,6 @@ test:
 	# Analyzing coverage
 	lcov -t "build/tests/flight_test" -o build/coverage.info -c -d build/flight_lib
 	tree build
+
+lint:
+	./linters/linters.h
