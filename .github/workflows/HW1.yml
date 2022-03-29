@@ -22,6 +22,10 @@ jobs:
           cd build
           cmake --build .
           ls -la
+          cd ..
+          ls -la
+          cd ..
+          ls -la
 
 #      - uses: actions/upload-artifact@v3
 #        with:
