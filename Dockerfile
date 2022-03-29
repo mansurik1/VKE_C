@@ -17,10 +17,3 @@ RUN wget https://sourceware.org/pub/valgrind/valgrind-3.18.1.tar.bz2 && \
     make install
 WORKDIR /
 RUN rm -rf valgrind
-
-WORKDIR HW1
-COPY *.c Dockerfile CMakeLists.txt .gitignore ./
-COPY flight_lib ./flight_lib/
-COPY tests ./tests/
-COPY .git ./.git/
-WORKDIR /
