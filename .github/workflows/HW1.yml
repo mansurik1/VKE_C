@@ -38,4 +38,4 @@ jobs:
           path: build/
 
       - name: Launch tests
-        run: make test
+        run: ./build/tests/flight_test
