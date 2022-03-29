@@ -40,12 +40,12 @@ jobs:
       - name: Launch tests
         run: make test
 
-#      - name: codecov
-#        uses: codecov/codecov-action@v2
-#        with:
-#          token: ${{ secrets.CODECOV_TOKEN }}
-#          files: build/coverage.info
-#          flags: unittests
-#          name: codecov-umbrella
-#          fail_ci_if_error: true
-#          verbose: true
+      - name: codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: build/coverage.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
