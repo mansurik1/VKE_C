@@ -25,7 +25,7 @@ jobs:
           name: build_dir
           path: build/
 
-  Test:
+  Tests:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
     needs: [Build]
@@ -39,3 +39,13 @@ jobs:
 
       - name: Launch tests
         run: make test
+
+      - name: codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
