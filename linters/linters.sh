@@ -23,13 +23,13 @@ function check_log() {
 
 print_header "RUN cppcheck"
 tree
-check_log "cppcheck --enable=all --inconclusive --error-exitcode=1 -Iflight_lib -I/HW1 --suppress=missingIncludeSystem flight_lib *.c" "\(information\)"
+check_log "cppcheck --enable=all --inconclusive --error-exitcode=1 -Iflight_lib -I . --suppress=missingIncludeSystem flight_lib *.c" "\(information\)"
 
 print_header "RUN clang-tidy"
-check_log "clang-tidy /HW1/*.c /HW1/flight_lib/*.c /HW1/flight_lib/*.h -warnings-as-errors=* -extra-arg=-std=c99 -- -I/HW1/flight_lib/" "Error (?:reading|while processing)"
+check_log "clang-tidy /*.c flight_lib/*.c flight_lib/*.h -warnings-as-errors=* -extra-arg=-std=c99 -- -Iflight_lib/" "Error (?:reading|while processing)"
 
 print_header "RUN cpplint"
-check_log "cpplint --extensions=c /HW1/flight_lib/*.c /HW1/*.c /HW1/flight_lib/*.h" "Can't open for reading"
+check_log "cpplint --extensions=c flight_lib/*.c /*.c flight_lib/*.h" "Can't open for reading"
 
 print_header "SUCCESS"
 ls
