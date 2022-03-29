@@ -1,5 +1,5 @@
-#ifndef HW1_FLIGHT_H
-#define HW1_FLIGHT_H
+#ifndef _HW1_FLIGHT_LIB_FLIGHT_H_
+#define _HW1_FLIGHT_LIB_FLIGHT_H_
 
 #include <stdio.h>
 #include <errno.h>
@@ -45,4 +45,4 @@ int find_best_flights(char*, char*, Flight*, size_t, size_t*, size_t*);
 void print_flight(FILE*, Flight*, size_t);
 void free_flights_memory(Flight*, size_t);
 
-#endif
+#endif  // _HW1_FLIGHT_LIB_FLIGHT_H_

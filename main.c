@@ -68,7 +68,6 @@ int main(void) {
     if (find_best_flights(dep_airport, arr_airport, flights, number_of_flights, &minimal_duration_flight_index,
                           &minimal_cost_flight_index) == NOT_FOUND_ERROR) {
         printf("\nPair of specified airports has not been found.");
-        
         free(dep_airport);
         free(arr_airport);
         free_flights_memory(flights, number_of_flights);
@@ -80,7 +79,6 @@ int main(void) {
 
     printf("\nMost advantageous air ticket:\n");
     print_flight(stdout, flights, minimal_cost_flight_index);
-    
     free(dep_airport);
     free(arr_airport);
     free_flights_memory(flights, number_of_flights);

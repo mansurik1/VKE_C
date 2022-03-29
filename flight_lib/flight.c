@@ -21,7 +21,6 @@ int grow_buffer(char** buffer, size_t old_length, size_t new_length) {
     if (new_length <= old_length) {
         return MEMORY_ALLOCATION_ERROR;
     }
-    
     // Allocating new buffer with check
     char* new_buffer = NULL;
     if ((new_buffer = (char*)malloc(sizeof(char) * new_length)) == NULL) {
@@ -172,7 +171,6 @@ int allocate_flights_memory(Flight** flights, size_t flights_length) {
     if ((*flights = (Flight*)malloc(sizeof(Flight) * flights_length)) == NULL) {
         return MEMORY_ALLOCATION_ERROR;
     }
-    
     for (size_t i = 0; i < flights_length; ++i) {
         (*flights)[i].arrival_airport_code = NULL;
         (*flights)[i].departure_airport_code = NULL;
@@ -196,8 +194,7 @@ int find_best_flights(char* dep_airport, char* arr_airport, Flight* flights, siz
                 *minimal_duration_flight_index = i;
                 minimal_cost = flights[i].flight_cost;
                 *minimal_cost_flight_index = i;
-            }
-            else {
+            } else {
                 if (flights[i].flight_duration < minimal_duration) {
                     minimal_duration = flights[i].flight_duration;
                     *minimal_duration_flight_index = i;
@@ -213,8 +210,7 @@ int find_best_flights(char* dep_airport, char* arr_airport, Flight* flights, siz
 
     if (matches > 0) {
         return NO_ERROR;
-    }
-    else {
+    } else {
         return NOT_FOUND_ERROR;
     }
 }
@@ -233,6 +229,5 @@ void free_flights_memory(Flight* flights, size_t flights_length) {
         free(flights[i].departure_airport_code);
         free(flights[i].arrival_airport_code);
     }
-    
     free(flights);
 }

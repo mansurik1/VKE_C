@@ -40,7 +40,7 @@ jobs:
       - name: Launch tests
         run: make test
 
-      - name: codecov
+      - name: Code coverage
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
