@@ -37,4 +37,4 @@ jobs:
           name: build_dir
 
       - name: Launch tests
-        run: make test
+        run: ls -la
