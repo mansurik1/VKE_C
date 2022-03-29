@@ -23,7 +23,7 @@ jobs:
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
       - name: Test
-        working-directory: ${{github.workspace}}
+#        working-directory: ${{github.workspace}}
         run: |
-          cd ../VKE_C
+          cd /home/runner/work/VKE_C/VKE_C/build
           ls -la
