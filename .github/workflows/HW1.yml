@@ -24,4 +24,4 @@ jobs:
 
       - name: Test
         working-directory: ${{github.workspace}}/build/tests
-        run: flight_test
+        run: ls -la
