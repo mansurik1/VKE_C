@@ -7,4 +7,5 @@ build:
 	cmake --build ./build
 
 test:
+	chmod +x build/tests/flight_test
 	./build/tests/flight_test
