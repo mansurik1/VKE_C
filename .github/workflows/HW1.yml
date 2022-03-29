@@ -24,4 +24,6 @@ jobs:
 
       - name: Test
         working-directory: ${{github.workspace}}
-        run: ls -la
+        run: |
+          cd ../VKE_C
+          ls -la
