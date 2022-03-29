@@ -1,4 +1,4 @@
-.PHONY: configure build
+.PHONY: configure build test
 
 configure:
 	cmake -DBUILD_TESTS=on -B build
