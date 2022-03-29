@@ -8,4 +8,6 @@ build:
 
 test:
 	ls -la
+	ls -la ..
+	ls -la ../..
 	#./build/tests/flight_lib
