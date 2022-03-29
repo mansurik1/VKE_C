@@ -10,5 +10,5 @@ test:
 	ls -la
 	ls -la ..
 	ls -la ../..
-	ls -la ../../_actions
+	ls -la ../../_actions/actions
 	#./build/tests/flight_lib
