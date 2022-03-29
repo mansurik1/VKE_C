@@ -7,7 +7,4 @@ build:
 	cmake --build ./build
 
 test:
-	ls -la
-	ls -la build
-	ls -la build/tests
-	#./build/tests/flight_lib
+	./build/tests/flight_test
