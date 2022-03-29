@@ -1,6 +1,8 @@
 configure:
-	cmake -DBUILD_TESTS=on -B build2
+	ls -la \
+	cmake -DBUILD_TESTS=on -B build
 
 build:
-	cd build2 \
+	cd build \
+	ls -la \
 	cmake --build .
