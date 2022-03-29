@@ -10,6 +10,6 @@ test:
 	# Testing
 	chmod +x build/tests/flight_test
 	./build/tests/flight_test
-	tree build
 	# Analyzing coverage
 	#lcov -t "tests/flight_test" -o coverage.info -c -d flight_lib
+	tree
