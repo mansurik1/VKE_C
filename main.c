@@ -85,5 +85,5 @@ int main(void) {
     free(arr_airport);
     free_flights_memory(flights, number_of_flights);
 
-    return NO_ERROR
+    return NO_ERROR;
 }
