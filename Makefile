@@ -2,6 +2,7 @@
 
 format:
 	chmod +x scripts/formatters.sh
+	tree
 	./scripts/formatters.sh
 
 lint:

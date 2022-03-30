@@ -80,5 +80,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Memory_check
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build_dir
+          path: build/
+
+      - name: Memory check
         run: make valgrind
