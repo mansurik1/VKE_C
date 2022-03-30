@@ -20,7 +20,7 @@ jobs:
       - name: Format
         run: make format
 
-  Static_analyze:
+  Static:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
 
@@ -78,7 +78,7 @@ jobs:
           fail_ci_if_error: true
           verbose: true
 
-  Dynamic_analyze:
+  Dynamic:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
     needs: [Build]
