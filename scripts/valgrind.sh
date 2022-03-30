@@ -22,6 +22,6 @@ function check_log() {
 }
 
 print_header "RUN valgrind"
-check_log "valgrind --tool=memcheck --leak-check=yes --leak-check=full --show-leak-kinds=all build/tests/flight_test" "Invalid"
+check_log "valgrind --tool=memcheck --leak-check=yes --leak-check=full --show-leak-kinds=all build/tests/flight_test" "ERROR"
 
 print_header "VALGRIND WORK COMPLETED SUCCESSFULLY!"
