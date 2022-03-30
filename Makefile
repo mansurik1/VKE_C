@@ -16,6 +16,7 @@ lint:
 
 configure:
 	cmake -DBUILD_TESTS=on -B ${BUILD_DIRECTORY}
+	tree
 
 build:
 	make
