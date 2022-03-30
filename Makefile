@@ -15,19 +15,19 @@ lint:
 	./scripts/linters.sh
 
 configure:
-	cmake -DBUILD_TESTS=on -B ${ BUILD_DIRECTORY }
+	cmake -DBUILD_TESTS=on -B ${BUILD_DIRECTORY}
 
 build:
 	make
 
 test:
 	# Testing
-	chmod +x ${ TESTS_DIRECTORY }/flight_test
-	./${ TESTS_DIRECTORY }/flight_test
+	chmod +x ${TESTS_DIRECTORY}/flight_test
+	./${TESTS_DIRECTORY}/flight_test
 	# Analyzing coverage
-	lcov -t "${ TESTS_DIRECTORY }/flight_test" -o coverage.info -c -d ${ LIB_DIRECTORY }
+	lcov -t "${TESTS_DIRECTORY}/flight_test" -o coverage.info -c -d ${LIB_DIRECTORY}
 
 valgrind:
-	chmod +x /${ ROOT_DIRECTORY }/scripts/valgrind.sh
+	chmod +x /${ROOT_DIRECTORY}/scripts/valgrind.sh
 	chmod +x flight_test
-	./${ ROOT_DIRECTORY }/scripts/valgrind.sh
+	./${ROOT_DIRECTORY}/scripts/valgrind.sh
