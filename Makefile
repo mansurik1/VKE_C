@@ -1,4 +1,4 @@
-.PHONY: configure build test lint
+.PHONY: configure build test lint format
 
 configure:
 	cmake -DBUILD_TESTS=on -B build
@@ -16,3 +16,6 @@ test:
 
 lint:
 	./linters/linters.sh
+
+format:
+	clang-format -i *.c flight_lib/*.c flight_lib/*.h
