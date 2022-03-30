@@ -62,7 +62,7 @@ jobs:
 
       - name: Launch tests
         working-directory: ${{github.workspace}}/build
-        run: make test
+        run: make test -f ../Makefile
 
       - name: Check code coverage
         uses: codecov/codecov-action@v2
