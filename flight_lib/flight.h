@@ -45,4 +45,4 @@ int find_best_flights(char *, char *, Flight *, size_t, size_t *, size_t *);
 void print_flight(FILE *, Flight *, size_t);
 void free_flights_memory(Flight *, size_t);
 
-#endif // FLIGHT_LIB_FLIGHT_H_
+#endif  // FLIGHT_LIB_FLIGHT_H_

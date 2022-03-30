@@ -1,9 +1,11 @@
 .PHONY: format lint configure build test valgrind
 
 format:
+	chmod +x scripts/formatters.sh
 	./scripts/formatters.sh
 
 lint:
+	chmod +x scripts/linters.sh
 	./scripts/linters.sh
 
 configure:
@@ -21,4 +23,5 @@ test:
 	tree build
 
 valgrind:
+	chmod +x scripts/valgrind.sh
 	./scripts/valgrind.sh
