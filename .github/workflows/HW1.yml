@@ -38,7 +38,7 @@ jobs:
 
       - name: Build
         working-directory: ${{github.workspace}}/build
-        run: make build -f ..
+        run: make build -f ../Makefile
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
