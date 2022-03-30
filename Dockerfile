@@ -3,7 +3,7 @@ FROM gcc:latest
 RUN apt update && \
     apt full-upgrade -y && \
     apt autoremove -y && \
-    apt install git lcov cppcheck clang-tidy python3-pip libc6-dbg cmake libgtest-dev tree -y
+    apt install git lcov cppcheck clang-format clang-tidy python3-pip libc6-dbg cmake libgtest-dev tree -y
 
 RUN pip install cpplint
 

@@ -60,3 +60,13 @@ jobs:
 
       - name: Lint
         run: make lint
+
+#  Format:
+#    runs-on: ubuntu-latest
+#    container: mans02/c-hw-image
+#
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Format
+#        run: make format

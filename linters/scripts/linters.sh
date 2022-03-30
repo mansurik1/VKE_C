@@ -22,7 +22,6 @@ function check_log() {
 }
 
 print_header "RUN cppcheck"
-tree
 check_log "cppcheck --enable=all --inconclusive --error-exitcode=1 -Iflight_lib -I . --suppress=missingIncludeSystem flight_lib *.c" "\(information\)"
 
 print_header "RUN clang-tidy"
@@ -32,4 +31,3 @@ print_header "RUN cpplint"
 check_log "cpplint --extensions=c flight_lib/*.c *.c flight_lib/*.h" "Can't open for reading"
 
 print_header "SUCCESS"
-ls
