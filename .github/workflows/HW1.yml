@@ -41,14 +41,14 @@ jobs:
         run: make configure
 
       - name: Build
-        working-directory: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}
+        working-directory: ${{ github.workspace }}/$BUILD_DIRECTORY
         run: make build -f ../Makefile
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build_dir
-          path: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}
+          path: ${{ github.workspace }}/$BUILD_DIRECTORY
 
   Testing:
     runs-on: ubuntu-latest
@@ -62,17 +62,17 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build_dir
-          path: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}
+          path: ${{ github.workspace }}/$BUILD_DIRECTORY
 
       - name: Launch tests
-        working-directory: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}
+        working-directory: ${{ github.workspace }}/$BUILD_DIRECTORY
         run: make test -f ../Makefile
 
       - name: Check code coverage
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}/coverage.info
+          files: ${{ github.workspace }}/$BUILD_DIRECTORY/coverage.info
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
@@ -90,8 +90,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build_dir
-          path: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}
+          path: ${{ github.workspace }}/$BUILD_DIRECTORY
 
       - name: Memory check
-        working-directory: ${{ github.workspace }}/${{ BUILD_DIRECTORY }}/${{ TESTS_DIRECTORY }}
+        working-directory: ${{ github.workspace }}/$BUILD_DIRECTORY/$TESTS_DIRECTORY
         run: make valgrind
