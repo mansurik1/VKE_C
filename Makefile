@@ -1,3 +1,9 @@
+ROOT_DIRECTORY = HW1
+BUILD_DIRECTORY = build
+TESTS_DIRECTORY = tests
+LIB_DIRECTORY = flight_lib
+MAIN_FILE_DIRECTORY = ${ ROOT_DIRECTORY }
+
 .PHONY: format lint configure build test valgrind
 
 format:
@@ -9,20 +15,19 @@ lint:
 	./scripts/linters.sh
 
 configure:
-	cmake -DBUILD_TESTS=on -B build
+	cmake -DBUILD_TESTS=on -B ${ BUILD_DIRECTORY }
 
 build:
-	cmake --build .
+	make
 
 test:
-	tree
 	# Testing
-	chmod +x tests/flight_test
-	./tests/flight_test
+	chmod +x ${ TESTS_DIRECTORY }/flight_test
+	./${ TESTS_DIRECTORY }/flight_test
 	# Analyzing coverage
-	lcov -t "tests/flight_test" -o coverage.info -c -d flight_lib
+	lcov -t "${ TESTS_DIRECTORY }/flight_test" -o coverage.info -c -d ${ LIB_DIRECTORY }
 
 valgrind:
-	chmod +x scripts/valgrind.sh
-	chmod +x build/tests/flight_test
-	./scripts/valgrind.sh
+	chmod +x /${ ROOT_DIRECTORY }/scripts/valgrind.sh
+	chmod +x flight_test
+	./${ ROOT_DIRECTORY }/scripts/valgrind.sh
