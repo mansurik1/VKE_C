@@ -30,6 +30,19 @@ jobs:
       - name: Lint
         run: make lint
 
+  Sanitize:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Address sanitizer
+        run: make address
+
+      - name: Thread sanitizer
+        run: make thread
+
   Build:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
@@ -94,16 +107,3 @@ jobs:
 
       - name: Memory check
         run: make valgrind
-
-  Sanitize:
-    runs-on: ubuntu-latest
-    container: mans02/c-hw-image
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Address sanitizer
-        run: make address
-
-      - name: Thread sanitizer
-        run: make thread
