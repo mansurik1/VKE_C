@@ -30,4 +30,4 @@ check_log "clang-tidy *.c flight_lib/*.c flight_lib/*.h -warnings-as-errors=* -e
 print_header "RUN cpplint"
 check_log "cpplint --extensions=c flight_lib/*.c *.c flight_lib/*.h" "Can't open for reading"
 
-print_header "SUCCESS"
+print_header "LINTING COMPLETED SUCCESSFULLY!"

@@ -1,4 +1,10 @@
-.PHONY: configure build test lint format
+.PHONY: format lint configure build test valgrind
+
+format:
+	./scripts/formatters.sh
+
+lint:
+	./scripts/linters.sh
 
 configure:
 	cmake -DBUILD_TESTS=on -B build
@@ -14,8 +20,5 @@ test:
 	lcov -t "build/tests/flight_test" -o build/coverage.info -c -d build/flight_lib
 	tree build
 
-lint:
-	./linters/linters.sh
-
-format:
-	clang-format -i *.c flight_lib/*.c flight_lib/*.h
+valgrind:
+	./scripts/valgrind.sh
