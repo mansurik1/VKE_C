@@ -15,4 +15,4 @@ test:
 	tree build
 
 lint:
-	./linters/scripts/linters.sh
+	./linters/linters.sh
