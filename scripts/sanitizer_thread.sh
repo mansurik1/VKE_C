@@ -22,6 +22,6 @@ function check_log() {
 }
 
 print_header "RUN sanitizers"
-check_log "g++ -Wall -fsanitize=thread -fno-sanitize-recover=all -fsanitize-undefined-trap-on-error -lgtest -Iflight_lib -Lbuild/flight_lib tests/test_flight.cpp" "undefined reference"
+check_log "g++ -Wall -fsanitize=thread -fno-sanitize-recover=all -fsanitize-undefined-trap-on-error -lgtest -pthread -Iflight_lib -Lbuild/flight_lib tests/test_flight.cpp" "undefined reference"
 
 print_header "SANITIZERS SUCCESS"
