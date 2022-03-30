@@ -37,14 +37,14 @@ jobs:
         run: make configure
 
       - name: Build
-        working-directory: build
-        run: make build ..
+        working-directory: ${{github.workspace}}/build
+        run: make build -f ..
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build_dir
-          path: build/
+          path: build
 
   Testing:
     runs-on: ubuntu-latest
@@ -58,9 +58,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build_dir
-          path: build/
+          path: build
 
       - name: Launch tests
+        working-directory: ${{github.workspace}}/build
         run: make test
 
       - name: Check code coverage

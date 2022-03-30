@@ -2,7 +2,6 @@
 
 format:
 	chmod +x scripts/formatters.sh
-	tree
 	./scripts/formatters.sh
 
 lint:
@@ -16,12 +15,12 @@ build:
 	cmake --build .
 
 test:
+	tree
 	# Testing
-	chmod +x build/tests/flight_test
-	./build/tests/flight_test
+	chmod +x tests/flight_test
+	./tests/flight_test
 	# Analyzing coverage
-	lcov -t "build/tests/flight_test" -o build/coverage.info -c -d build/flight_lib
-	tree build
+	lcov -t "tests/flight_test" -o coverage.info -c -d flight_lib
 
 valgrind:
 	chmod +x scripts/valgrind.sh
