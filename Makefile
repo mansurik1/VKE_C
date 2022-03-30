@@ -13,7 +13,7 @@ configure:
 	cmake -DBUILD_TESTS=on -B build
 
 build:
-	cmake --build ./build
+	cmake --build .
 
 test:
 	# Testing
