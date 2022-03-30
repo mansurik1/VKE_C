@@ -45,7 +45,7 @@ jobs:
           name: build_dir
           path: build/
 
-  Test:
+  Testing:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
     needs: [Build]
