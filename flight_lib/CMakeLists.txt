@@ -1,4 +1,4 @@
-project(flight_lib)
+project(flight_library)
 set(CMAKE_C_STANDARD 99)
 cmake_minimum_required(VERSION 3.14)
 
