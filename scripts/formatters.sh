@@ -30,5 +30,7 @@ print_header "RUN clang-format"
 #           diff flight_lib/flight.h flight_lib/formatted_flight.h" \
 #           ">"
 tree
+clang-format main.c > formatted_main.c
+check_log "diff main.c formatted_main.c" ">"
 
 print_header "FORMATTING COMPLETED SUCCESSFULLY!"

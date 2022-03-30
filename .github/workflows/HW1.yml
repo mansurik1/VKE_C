@@ -38,7 +38,7 @@ jobs:
 
       - name: Build
         working-directory: build
-        run: make build
+        run: make build ..
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
