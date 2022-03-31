@@ -1,11 +1,8 @@
 #ifndef FLIGHT_LIB_FLIGHT_H_
 #define FLIGHT_LIB_FLIGHT_H_
 
-#include <errno.h>
-#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define DEFAULT_INITIAL_LENGTH 6
 #define ZERO 0
@@ -32,17 +29,7 @@ typedef struct {
   float flight_cost;
 } Flight;
 
-void display_notification(FILE *, int);
-int grow_buffer(char **, size_t, size_t);
-int get_string(FILE *, char **, size_t *, char);
-int safe_string_input(FILE *, FILE *, char **, size_t *);
-int safe_unsigned_convert(char *, size_t, unsigned *);
-int safe_float_convert(char *, size_t, float *);
-int safe_unsigned_input(FILE *, FILE *, unsigned *);
-int safe_float_input(FILE *, FILE *, float *);
-int allocate_flights_memory(Flight **, size_t);
-int find_best_flights(char *, char *, Flight *, size_t, size_t *, size_t *);
-void print_flight(FILE *, Flight *, size_t);
-void free_flights_memory(Flight *, size_t);
+int execute_program(FILE*, FILE*);
+void display_notification(FILE*, int);
 
 #endif // FLIGHT_LIB_FLIGHT_H_

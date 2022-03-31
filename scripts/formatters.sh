@@ -23,15 +23,20 @@ function check_log() {
 
 print_header "RUN clang-format"
 
-clang-format main.c > formatted_main.c
+clang-format main.c --style=Google > formatted_main.c
 check_log "diff main.c formatted_main.c" ">"
 
-cd flight_lib
+cd tests
 
-clang-format flight.c > formatted_flight.c
+clang-format test_flight.cpp --style=Google > formatted_test_flight.cpp
+check_log "diff test_flight.cpp formatted_test_flight.cpp" ">"
+
+cd ../flight_lib
+
+clang-format flight.c --style=Google > formatted_flight.c
 check_log "diff flight.c formatted_flight.c" ">"
 
-clang-format flight.h > formatted_flight.h
+clang-format flight.h --style=Google > formatted_flight.h
 check_log "diff flight.h formatted_flight.h" ">"
 
 print_header "FORMATTING COMPLETED SUCCESSFULLY!"
