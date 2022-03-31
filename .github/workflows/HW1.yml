@@ -82,7 +82,7 @@ jobs:
           name: complete_build_dir
           path: ${{ github.workspace }}/build
 
-  Testing:
+  Tests:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
     needs: [Build]
