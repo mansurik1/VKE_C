@@ -25,5 +25,7 @@ TEST(Notification, MEMORY_ALLOCATION_ERROR) {
     display_notification(output_file, MEMORY_ALLOCATION_ERROR);
     fclose(output_file);
 
+    char* a = (char*)malloc(5);
+
     EXPECT_EQ(strcmp(test_output, right_output), 0);
 }
