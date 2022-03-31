@@ -22,6 +22,7 @@ tests:
 valgrind:
 	chmod +x scripts/valgrind.sh
 	chmod +x build/tests/flight_test
+	chmod +x build/HW1
 	./scripts/valgrind.sh
 
 address:
