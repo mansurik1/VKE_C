@@ -10,7 +10,6 @@ scan-build:
 	scan-build -v cmake --build .
 
 build:
-	tree
 	make
 
 tests:
