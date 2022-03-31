@@ -55,8 +55,8 @@ jobs:
           path: ${{ github.workspace }}/build
 
       - name: Run Scan-Build
-        working-directory: ${{ github.workspace }}/build
-        run: make scan-build -f ../Makefile
+#        working-directory: ${{ github.workspace }}/build
+        run: make scan-build # -f ../Makefile
 
   Build:
     runs-on: ubuntu-latest
