@@ -1,4 +1,4 @@
-.PHONY: format address thread lint configure build test valgrind
+.PHONY: format lint configure build address thread test valgrind
 
 format:
 	chmod +x scripts/formatters.sh
@@ -7,6 +7,12 @@ format:
 lint:
 	chmod +x scripts/linters.sh
 	./scripts/linters.sh
+
+configure:
+	cmake -DBUILD_TESTS=on -B build
+
+build:
+	make
 
 address:
 	chmod +x scripts/sanitizer_address.sh
@@ -17,13 +23,6 @@ thread:
 	chmod +x scripts/sanitizer_thread.sh
 	./scripts/sanitizer_thread.sh
 	rm -f a.out
-
-configure:
-	cmake -DBUILD_TESTS=on -B build
-	tree
-
-build:
-	make
 
 test:
 	# Testing
