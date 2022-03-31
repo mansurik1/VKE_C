@@ -22,29 +22,19 @@ jobs:
           name: configured_build_dir
           path: ${{ github.workspace }}/build
 
-      - name: Upload Makefile
-        uses: actions/upload-artifact@v3
-        with:
-          name: Makefile
-          path: ${{ github.workspace }}/Makefile
-
   FBinfer:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
     needs: [ConfigureCMake]
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: Download configured build dir
         uses: actions/download-artifact@v3
         with:
           name: configured_build_dir
           path: ${{ github.workspace }}/build
-
-      - name: Download Makefile
-        uses: actions/download-artifact@v3
-        with:
-          name: Makefile
-          path: ${{ github.workspace }}
 
       - name: Run FBinfer
         working-directory: ${{ github.workspace }}/build
@@ -56,17 +46,13 @@ jobs:
     needs: [ ConfigureCMake ]
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: Download configured build dir
         uses: actions/download-artifact@v3
         with:
           name: configured_build_dir
           path: ${{ github.workspace }}/build
-
-      - name: Download Makefile
-        uses: actions/download-artifact@v3
-        with:
-          name: Makefile
-          path: ${{ github.workspace }}
 
       - name: Run Scan-Build
         working-directory: ${{ github.workspace }}/build
@@ -78,17 +64,13 @@ jobs:
     needs: [ConfigureCMake]
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: Download configured build dir
         uses: actions/download-artifact@v3
         with:
           name: configured_build_dir
           path: ${{ github.workspace }}/build
-
-      - name: Download Makefile
-        uses: actions/download-artifact@v3
-        with:
-          name: Makefile
-          path: ${{ github.workspace }}
 
       - name: Build
         working-directory: ${{ github.workspace }}/build
