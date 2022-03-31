@@ -29,6 +29,6 @@ check_log "clang-tidy flight_lib/flight.c main.c -extra-arg=-std=c99 -warnings-a
 check_log "clang-tidy tests/test_flight.cpp -warnings-as-errors=* -- -Iflight_lib" "Error (?:reading|while processing)"
 
 print_header "RUN cpplint"
-check_log "cpplint --extensions=c flight_lib/*.c *.c flight_lib/*.h" "Can't open for reading"
+check_log "cpplint --extensions=c,cc,h flight_lib/flight.c flight_lib/flight.h tests/test_flight.cc main.c" "Can't open for reading"
 
 print_header "LINTING COMPLETED SUCCESSFULLY!"

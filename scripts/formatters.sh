@@ -28,8 +28,8 @@ check_log "diff main.c formatted_main.c" ">"
 
 cd tests
 
-clang-format test_flight.cpp --style=Google > formatted_test_flight.cpp
-check_log "diff test_flight.cpp formatted_test_flight.cpp" ">"
+clang-format test_flight.cc --style=Google > formatted_test_flight.cc
+check_log "diff test_flight.cc formatted_test_flight.cc" ">"
 
 cd ../flight_lib
 

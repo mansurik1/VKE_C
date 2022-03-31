@@ -274,7 +274,7 @@ int execute_program(FILE *input_file, FILE *output_file) {
             free_flights_memory(flights, number_of_flights);
             return error;
         }
-        fprintf(output_file, 
+        fprintf(output_file,
                 "Please enter the departure airport code of the flight number %zu -> ",
                 i + 1);
         if ((error = safe_string_input(input_file,
@@ -291,7 +291,7 @@ int execute_program(FILE *input_file, FILE *output_file) {
             free_flights_memory(flights, number_of_flights);
             return error;
         }
-        fprintf(output_file, 
+        fprintf(output_file,
                 "Please enter the duration of the flight number %zu (in minutes) -> ",
                 i + 1);
         if ((error = safe_unsigned_input(

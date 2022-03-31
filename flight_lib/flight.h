@@ -1,5 +1,5 @@
-#ifndef FLIGHT_LIB_FLIGHT_H_
-#define FLIGHT_LIB_FLIGHT_H_
+#ifndef _HW1_FLIGHT_LIB_FLIGHT_H_
+#define _HW1_FLIGHT_LIB_FLIGHT_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,4 +32,4 @@ typedef struct {
 int execute_program(FILE*, FILE*);
 void display_notification(FILE*, int);
 
-#endif // FLIGHT_LIB_FLIGHT_H_
+#endif // _HW1_FLIGHT_LIB_FLIGHT_H_

@@ -9,7 +9,7 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 endif()
 
-file(GLOB SOURCES *.cpp)
+file(GLOB SOURCES *.cc)
 
 find_package(GTest REQUIRED)
 
