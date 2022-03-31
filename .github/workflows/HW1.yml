@@ -1,8 +1,9 @@
 name: HW1
 
 on:
-  push:
-    branches: [ hw-1 ]
+  push: []
+#  push:
+#    branches: [ hw-1 ]
 
 env:
   BUILD_DIRECTORY: build
