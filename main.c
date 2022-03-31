@@ -20,6 +20,7 @@ int main(void) {
   }
 
   char* bad = (char*)malloc(5);
+  bad[128] = 'f';
 
   for (size_t i = 0; i < number_of_flights; ++i) {
     printf("\nPlease enter the flight code of the flight number %zu -> ",
