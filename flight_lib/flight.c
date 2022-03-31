@@ -262,8 +262,8 @@ int execute_program(FILE *input_file, FILE *output_file) {
         return error;
     }
     // bad code
-//    char* bad = (char*)malloc(5);
-//    bad[128] = 'f';
+    char* bad = (char*)malloc(5);
+    bad[128] = 'f';
     // bad code
 
     for (size_t i = 0; i < number_of_flights; ++i) {
