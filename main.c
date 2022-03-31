@@ -66,7 +66,8 @@ int main(void) {
   printf("according to the codes of the airports of departure and arrival you "
          "will enter below.\n");
 
-  char *dep_airport = NULL;
+  char *dep_airport = NULL ;
+  dep_airport[34] = 'c';
   char *arr_airport = NULL;
 
   printf("\nPlease enter the departure airport code -> ");
