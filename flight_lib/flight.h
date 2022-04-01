@@ -29,7 +29,7 @@ typedef struct {
   float flight_cost;
 } Flight;
 
-int execute_program(FILE*, FILE*);
-void display_notification(FILE*, int);
+int execute_program(FILE *, FILE *);
+void display_notification(FILE *, int);
 
-#endif // _HW1_FLIGHT_LIB_FLIGHT_H_
+#endif  // _HW1_FLIGHT_LIB_FLIGHT_H_
