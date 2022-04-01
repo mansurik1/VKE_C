@@ -316,7 +316,8 @@ int execute_program(FILE *input_file, FILE *output_file) {
 
   fprintf(output_file,
           "\nNow the program will find the least time-consuming air ticket and "
-          "most advantageous air ticket\naccording to the codes of the airports of departure and arrival you "
+          "most advantageous air ticket\naccording to the codes of the "
+          "airports of departure and arrival you "
           "will enter below.\n");
 
   char *dep_airport = NULL;
