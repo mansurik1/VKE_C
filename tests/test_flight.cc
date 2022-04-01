@@ -33,8 +33,9 @@ TEST(Notification, MEMORY_ALLOCATION_ERROR) {
 
 TEST(Whole_program, two_flights) {
   char* right_output = (char*)malloc(sizeof(char) * 1272);
-  right_output =
-      (char*)"Please enter the number of flights -> \nPlease enter the flight code of "
+  memcpy(
+      right_output,
+      "Please enter the number of flights -> \nPlease enter the flight code of "
       "the flight number 1 -> Please enter the departure airport code of the "
       "flight number 1 -> Please enter the arrival airport code of the flight "
       "number 1 -> Please enter the duration of the flight number 1 (in "
@@ -52,7 +53,8 @@ TEST(Whole_program, two_flights) {
       "airport code: VKO\nFlight duration: 75 minutes\nFlight cost: "
       "$234.500000\n\nMost advantageous air ticket:\nFlight code: "
       "CAB14\nDeparture airport code: SVO\nArrival airport code: VKO\nFlight "
-      "duration: 95 minutes\nFlight cost: $113.454002\n";
+      "duration: 95 minutes\nFlight cost: $113.454002\n",
+      sizeof(char) * 1272);
 
   char input[] =
       "2\nABC13\nSVO\nVKO\n75\n234.5\nCAB14\nSVO\nVKO\n95\n113.454\nSVO\nVKO\n";
@@ -68,4 +70,7 @@ TEST(Whole_program, two_flights) {
   fclose(output_file);
 
   EXPECT_EQ(strcmp(test_output, right_output), 0);
+
+  free(test_output);
+  free(right_output);
 }
