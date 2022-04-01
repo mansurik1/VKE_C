@@ -32,7 +32,7 @@ TEST(Notification, MEMORY_ALLOCATION_ERROR) {
 }
 
 TEST(Whole_program, two_flights) {
-  char* right_output = (char*)malloc(sizeof(char) * 1272);
+  char* right_output = new char[1272];
   memcpy(
       right_output,
       "Please enter the number of flights -> \nPlease enter the flight code of "
@@ -61,7 +61,7 @@ TEST(Whole_program, two_flights) {
 
   FILE* input_file = fmemopen(input, sizeof(input), "r");
 
-  char* test_output = (char*)malloc(sizeof(char) * 1272);
+  char* test_output = new char[1272];
   FILE* output_file = fmemopen(test_output, sizeof(char) * 1272, "w");
 
   execute_program(input_file, output_file);
@@ -71,6 +71,6 @@ TEST(Whole_program, two_flights) {
 
   EXPECT_EQ(strcmp(test_output, right_output), 0);
 
-  free(test_output);
-  free(right_output);
+  delete[] right_output;
+  delete[] test_output;
 }
