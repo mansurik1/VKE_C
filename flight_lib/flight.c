@@ -9,16 +9,16 @@ void display_notification(FILE *output_file, int error) {
   fflush(stdout);
 
   switch (error) {
-  case FORMAT_ERROR:
-    fprintf(output_file, "Entered string format is incorrect.\n");
-    fprintf(output_file, "Please retype it -> ");
-    break;
-  case MEMORY_ALLOCATION_ERROR:
-    fprintf(output_file, "\nError occurred while trying to allocate memory.\n");
-    fprintf(output_file, "Please clear your RAM and run the program again.");
-    break;
-  default:
-    break;
+    case FORMAT_ERROR:
+      fprintf(output_file, "Entered string format is incorrect.\n");
+      fprintf(output_file, "Please retype it -> ");
+      break;
+    case MEMORY_ALLOCATION_ERROR:
+      fprintf(output_file, "\nError occurred while trying to allocate memory.\n");
+      fprintf(output_file, "Please clear your RAM and run the program again.");
+      break;
+    default:
+      break;
   }
 }
 
@@ -247,109 +247,109 @@ void free_flights_memory(Flight *flights, size_t flights_length) {
 }
 
 int execute_program(FILE *input_file, FILE *output_file) {
-    fprintf(output_file, "Please enter the number of flights -> ");
-    unsigned number_of_flights = 0;
-    int error = ZERO;
+  fprintf(output_file, "Please enter the number of flights -> ");
+  unsigned number_of_flights = 0;
+  int error = ZERO;
 
-    if ((error = safe_unsigned_input(input_file, &number_of_flights)) !=
-        NO_ERROR) {
-        return error;
-    }
+  if ((error = safe_unsigned_input(input_file, &number_of_flights)) !=
+      NO_ERROR) {
+    return error;
+  }
 
-    Flight *flights = NULL;
-    if ((error = allocate_flights_memory(&flights, number_of_flights)) !=
-        NO_ERROR) {
-        return error;
-    }
-    // bad code
+  Flight *flights = NULL;
+  if ((error = allocate_flights_memory(&flights, number_of_flights)) !=
+      NO_ERROR) {
+    return error;
+  }
+  // bad code
 //    char* bad = (char*)malloc(5);
 //    bad[128] = 'f';
-    // bad code
+  // bad code
 
-    for (size_t i = 0; i < number_of_flights; ++i) {
-        fprintf(output_file, "\nPlease enter the flight code of the flight number %zu -> ",
-               i + 1);
-        if ((error = safe_string_input(input_file, &(flights[i].flight_code),
-                                       NULL)) != NO_ERROR) {
-            free_flights_memory(flights, number_of_flights);
-            return error;
-        }
-        fprintf(output_file,
-                "Please enter the departure airport code of the flight number %zu -> ",
-                i + 1);
-        if ((error = safe_string_input(input_file,
-                                       &(flights[i].departure_airport_code),
-                                       NULL)) != NO_ERROR) {
-            free_flights_memory(flights, number_of_flights);
-            return error;
-        }
-        fprintf(output_file, "Please enter the arrival airport code of the flight number %zu -> ",
-               i + 1);
-        if ((error = safe_string_input(input_file,
-                                       &(flights[i].arrival_airport_code), NULL)) !=
-            NO_ERROR) {
-            free_flights_memory(flights, number_of_flights);
-            return error;
-        }
-        fprintf(output_file,
-                "Please enter the duration of the flight number %zu (in minutes) -> ",
-                i + 1);
-        if ((error = safe_unsigned_input(
-                input_file, &(flights[i].flight_duration))) != NO_ERROR) {
-            free_flights_memory(flights, number_of_flights);
-            return error;
-        }
-        fprintf(output_file, "Please enter the flight_cost of the flight number %zu (in USD) -> ",
-               i + 1);
-        if ((error = safe_float_input(input_file, &(flights[i].flight_cost))) !=
-            NO_ERROR) {
-            free_flights_memory(flights, number_of_flights);
-            return error;
-        }
+  for (size_t i = 0; i < number_of_flights; ++i) {
+    fprintf(output_file, "\nPlease enter the flight code of the flight number %zu -> ",
+            i + 1);
+    if ((error = safe_string_input(input_file, &(flights[i].flight_code),
+                                   NULL)) != NO_ERROR) {
+      free_flights_memory(flights, number_of_flights);
+      return error;
     }
-
-    fprintf(output_file, "\nNow the program will find the least time-consuming air ticket and "
-           "most advantageous air ticket\n");
-    fprintf(output_file, "according to the codes of the airports of departure and arrival you "
-           "will enter below.\n");
-
-    char *dep_airport = NULL;
-    char *arr_airport = NULL;
-
-    fprintf(output_file, "\nPlease enter the departure airport code -> ");
-    if ((error = safe_string_input(input_file, &dep_airport, NULL)) !=
+    fprintf(output_file,
+            "Please enter the departure airport code of the flight number %zu -> ",
+            i + 1);
+    if ((error = safe_string_input(input_file,
+                                   &(flights[i].departure_airport_code),
+                                   NULL)) != NO_ERROR) {
+      free_flights_memory(flights, number_of_flights);
+      return error;
+    }
+    fprintf(output_file, "Please enter the arrival airport code of the flight number %zu -> ",
+            i + 1);
+    if ((error = safe_string_input(input_file,
+                                   &(flights[i].arrival_airport_code), NULL)) !=
         NO_ERROR) {
-        free_flights_memory(flights, number_of_flights);
-        return error;
+      free_flights_memory(flights, number_of_flights);
+      return error;
     }
-    fprintf(output_file, "Please enter the arrival airport code -> ");
-    if ((error = safe_string_input(input_file, &arr_airport, NULL)) !=
+    fprintf(output_file,
+            "Please enter the duration of the flight number %zu (in minutes) -> ",
+            i + 1);
+    if ((error = safe_unsigned_input(
+        input_file, &(flights[i].flight_duration))) != NO_ERROR) {
+      free_flights_memory(flights, number_of_flights);
+      return error;
+    }
+    fprintf(output_file, "Please enter the flight_cost of the flight number %zu (in USD) -> ",
+            i + 1);
+    if ((error = safe_float_input(input_file, &(flights[i].flight_cost))) !=
         NO_ERROR) {
-        free(dep_airport);
-        free_flights_memory(flights, number_of_flights);
-        return error;
+      free_flights_memory(flights, number_of_flights);
+      return error;
     }
+  }
 
-    size_t minimal_duration_flight_index = 0;
-    size_t minimal_cost_flight_index = 0;
-    if (find_best_flights(dep_airport, arr_airport, flights, number_of_flights,
-                          &minimal_duration_flight_index,
-                          &minimal_cost_flight_index) == NOT_FOUND_ERROR) {
-        fprintf(output_file, "\nPair of specified airports has not been found.");
-        free(dep_airport);
-        free(arr_airport);
-        free_flights_memory(flights, number_of_flights);
-        return NOT_FOUND_ERROR;
-    }
+  fprintf(output_file, "\nNow the program will find the least time-consuming air ticket and "
+                       "most advantageous air ticket\n");
+  fprintf(output_file, "according to the codes of the airports of departure and arrival you "
+                       "will enter below.\n");
 
-    fprintf(output_file, "\nLeast time-consuming air ticket:\n");
-    print_flight(stdout, flights, minimal_duration_flight_index);
+  char *dep_airport = NULL;
+  char *arr_airport = NULL;
 
-    fprintf(output_file, "\nMost advantageous air ticket:\n");
-    print_flight(stdout, flights, minimal_cost_flight_index);
+  fprintf(output_file, "\nPlease enter the departure airport code -> ");
+  if ((error = safe_string_input(input_file, &dep_airport, NULL)) !=
+      NO_ERROR) {
+    free_flights_memory(flights, number_of_flights);
+    return error;
+  }
+  fprintf(output_file, "Please enter the arrival airport code -> ");
+  if ((error = safe_string_input(input_file, &arr_airport, NULL)) !=
+      NO_ERROR) {
+    free(dep_airport);
+    free_flights_memory(flights, number_of_flights);
+    return error;
+  }
+
+  size_t minimal_duration_flight_index = 0;
+  size_t minimal_cost_flight_index = 0;
+  if (find_best_flights(dep_airport, arr_airport, flights, number_of_flights,
+                        &minimal_duration_flight_index,
+                        &minimal_cost_flight_index) == NOT_FOUND_ERROR) {
+    fprintf(output_file, "\nPair of specified airports has not been found.");
     free(dep_airport);
     free(arr_airport);
     free_flights_memory(flights, number_of_flights);
+    return NOT_FOUND_ERROR;
+  }
 
-    return NO_ERROR;
+  fprintf(output_file, "\nLeast time-consuming air ticket:\n");
+  print_flight(stdout, flights, minimal_duration_flight_index);
+
+  fprintf(output_file, "\nMost advantageous air ticket:\n");
+  print_flight(stdout, flights, minimal_cost_flight_index);
+  free(dep_airport);
+  free(arr_airport);
+  free_flights_memory(flights, number_of_flights);
+
+  return NO_ERROR;
 }
