@@ -61,8 +61,8 @@ TEST(Whole_program, two_flights) {
 
   FILE* input_file = fmemopen(input, sizeof(input), "r");
 
-  char* test_output = new char[1252];
-  FILE* output_file = fmemopen(test_output, sizeof(char) * 1252, "w");
+  char* test_output = new char[1253];
+  FILE* output_file = fmemopen(test_output, sizeof(char) * 1253, "w");
 
   execute_program(input_file, output_file);
 
