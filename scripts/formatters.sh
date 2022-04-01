@@ -24,19 +24,23 @@ function check_log() {
 print_header "RUN clang-format"
 
 clang-format main.c --style=Google > formatted_main.c
+print_header "main.c"
 check_log "diff main.c formatted_main.c" ">"
 
 cd tests
 
 clang-format test_flight.cc --style=Google > formatted_test_flight.cc
+print_header "test_flight.cc"
 check_log "diff test_flight.cc formatted_test_flight.cc" ">"
 
 cd ../flight_lib
 
 clang-format flight.c --style=Google > formatted_flight.c
+print_header "flight.c"
 check_log "diff flight.c formatted_flight.c" ">"
 
 clang-format flight.h --style=Google > formatted_flight.h
+print_header "flight.h"
 check_log "diff flight.h formatted_flight.h" ">"
 
 print_header "FORMATTING COMPLETED SUCCESSFULLY!"
