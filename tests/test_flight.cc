@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <string>
 
 extern "C" {
 #include "flight.h"
@@ -30,9 +31,8 @@ TEST(Notification, MEMORY_ALLOCATION_ERROR) {
 
   EXPECT_EQ(strcmp(test_output, right_output), 0);
 }
-
 TEST(Whole_program, two_flights) {
-  char* right_output = new char[1272];
+  char* right_output = new char[1253];
   memcpy(
       right_output,
       "Please enter the number of flights -> \nPlease enter the flight code of "
@@ -54,17 +54,19 @@ TEST(Whole_program, two_flights) {
       "$234.500000\n\nMost advantageous air ticket:\nFlight code: "
       "CAB14\nDeparture airport code: SVO\nArrival airport code: VKO\nFlight "
       "duration: 95 minutes\nFlight cost: $113.454002\n",
-      sizeof(char) * 1272);
+      sizeof(char) * 1253);
 
   char input[] =
       "2\nABC13\nSVO\nVKO\n75\n234.5\nCAB14\nSVO\nVKO\n95\n113.454\nSVO\nVKO\n";
 
   FILE* input_file = fmemopen(input, sizeof(input), "r");
 
-  char* test_output = new char[1272];
-  FILE* output_file = fmemopen(test_output, sizeof(char) * 1272, "w");
+  char* test_output = new char[1252];
+  FILE* output_file = fmemopen(test_output, sizeof(char) * 1252, "w");
 
   execute_program(input_file, output_file);
+
+  putc('\0', output_file);
 
   fclose(input_file);
   fclose(output_file);
