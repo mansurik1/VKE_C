@@ -316,9 +316,7 @@ int execute_program(FILE *input_file, FILE *output_file) {
 
   fprintf(output_file,
           "\nNow the program will find the least time-consuming air ticket and "
-          "most advantageous air ticket\n");
-  fprintf(output_file,
-          "according to the codes of the airports of departure and arrival you "
+          "most advantageous air ticket\naccording to the codes of the airports of departure and arrival you "
           "will enter below.\n");
 
   char *dep_airport = NULL;
@@ -349,10 +347,10 @@ int execute_program(FILE *input_file, FILE *output_file) {
   }
 
   fprintf(output_file, "\nLeast time-consuming air ticket:\n");
-  print_flight(stdout, flights, minimal_duration_flight_index);
+  print_flight(output_file, flights, minimal_duration_flight_index);
 
   fprintf(output_file, "\nMost advantageous air ticket:\n");
-  print_flight(stdout, flights, minimal_cost_flight_index);
+  print_flight(output_file, flights, minimal_cost_flight_index);
   free(dep_airport);
   free(arr_airport);
   free_flights_memory(flights, number_of_flights);
