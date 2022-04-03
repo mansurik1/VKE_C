@@ -20,6 +20,7 @@ void display_notification(FILE *output_file, int error) {
       fprintf(output_file, "Please clear your RAM and run the program again.");
       break;
     default:
+      fprintf(output_file, "The error has occurred.");
       break;
   }
 }
