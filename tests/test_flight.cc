@@ -50,7 +50,7 @@ TEST(Notification, OTHER_ERROR) {
 TEST(Buffer_grow, Length_check) {
   const int OLD_LENGTH = 5;
   const int NEW_LENGTH = 3;
-  
+
   char *buffer = NULL;
   if ((buffer = (char *)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
     FAIL() << "Memory allocation error";
