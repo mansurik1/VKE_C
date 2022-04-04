@@ -55,7 +55,7 @@ TEST(Buffer_grow, Length_check) {
   const int NEW_LENGTH = 3;
 
   char* buffer = NULL;
-  if ((buffer = (char *)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
+  if ((buffer = (char*)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
     FAIL() << "Memory allocation error";
   }
 
@@ -70,7 +70,7 @@ TEST(Buffer_grow, Copy_check) {
   const int NEW_LENGTH = 5;
 
   char* buffer = NULL;
-  if ((buffer = (char *)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
+  if ((buffer = (char*)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
     FAIL() << "Memory allocation error";
   }
 
