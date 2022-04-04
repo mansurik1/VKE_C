@@ -17,7 +17,7 @@ TEST(Notification, FORMAT_ERROR) {
   fclose(output_file);
 
   ASSERT_EQ(strcmp(test_output, right_output), 0)
-      << "Program's output is incorrect";
+     << "Program's output is incorrect";
 }
 
 TEST(Notification, MEMORY_ALLOCATION_ERROR) {
@@ -31,7 +31,8 @@ TEST(Notification, MEMORY_ALLOCATION_ERROR) {
   display_notification(output_file, MEMORY_ALLOCATION_ERROR);
   fclose(output_file);
 
-  ASSERT_EQ(strcmp(test_output, right_output), 0) << "Program's output is incorrect";
+  ASSERT_EQ(strcmp(test_output, right_output), 0)
+      << "Program's output is incorrect";
 }
 
 TEST(Notification, OTHER_ERROR) {
@@ -45,7 +46,8 @@ TEST(Notification, OTHER_ERROR) {
   display_notification(output_file, SOME_OTHER_ERROR);
   fclose(output_file);
 
-  ASSERT_EQ(strcmp(test_output, right_output), 0) << "Program's output is incorrect";
+  ASSERT_EQ(strcmp(test_output, right_output), 0)
+      << "Program's output is incorrect";
 }
 
 TEST(Buffer_grow, Length_check) {
