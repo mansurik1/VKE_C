@@ -97,13 +97,14 @@ TEST(Buffer_grow, Copy_check) {
 }
 
 TEST(Get_string, Without_reallocation) {
-  char right_string[] = "12345";
+  char right_string[] = "123";
   FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
 
   char* test_output = NULL;
   get_string(input_file, &test_output, NULL, '\n');
+
+  EXPECT_EQ(strcmp(test_output, right_string), 0);
   free(test_output);
-  // EXPECT_EQ(strcmp(test_output, right_string), 0);
 }
 
 TEST(Whole_program, two_flights) {
