@@ -96,6 +96,16 @@ TEST(Buffer_grow, Copy_check) {
   free(buffer);
 }
 
+TEST(Get_string, Without_reallocation) {
+  char right_string[] = "12345";
+  FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
+
+  char* test_output = NULL;
+  get_string(input_file, &test_output, NULL, '\n');
+
+  EXPECT_EQ(strcmp(test_output, right_string), 0);
+}
+
 TEST(Whole_program, two_flights) {
   char* right_output = new char[1253];
   memcpy(
