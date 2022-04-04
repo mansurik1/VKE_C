@@ -17,7 +17,7 @@ TEST(Notification, FORMAT_ERROR) {
   fclose(output_file);
 
   ASSERT_EQ(strcmp(test_output, right_output), 0)
-     << "Program's output is incorrect";
+      << "Program's output is incorrect";
 }
 
 TEST(Notification, MEMORY_ALLOCATION_ERROR) {
@@ -54,12 +54,14 @@ TEST(Buffer_grow, Length_check) {
   const int OLD_LENGTH = 5;
   const int NEW_LENGTH = 3;
 
-  char *buffer = NULL;
+  char* buffer = NULL;
   if ((buffer = (char *)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
     FAIL() << "Memory allocation error";
   }
 
-  EXPECT_EQ(grow_buffer(&buffer, OLD_LENGTH, NEW_LENGTH), MEMORY_ALLOCATION_ERROR) << "Length check doesn't work";
+  EXPECT_EQ(grow_buffer(&buffer, OLD_LENGTH, NEW_LENGTH),
+            MEMORY_ALLOCATION_ERROR)
+      << "Length check doesn't work";
   free(buffer);
 }
 
@@ -67,7 +69,7 @@ TEST(Buffer_grow, Copy_check) {
   const int OLD_LENGTH = 3;
   const int NEW_LENGTH = 5;
 
-  char *buffer = NULL;
+  char* buffer = NULL;
   if ((buffer = (char *)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
     FAIL() << "Memory allocation error";
   }
@@ -76,7 +78,8 @@ TEST(Buffer_grow, Copy_check) {
     buffer[i] = (char)(i + '1');
   }
 
-  EXPECT_EQ(grow_buffer(&buffer, OLD_LENGTH, NEW_LENGTH), NO_ERROR) << "Memory allocation error";
+  EXPECT_EQ(grow_buffer(&buffer, OLD_LENGTH, NEW_LENGTH), NO_ERROR)
+      << "Memory allocation error";
 
   bool failure_flag = false;
   for (size_t i = 0; i < OLD_LENGTH; ++i) {
