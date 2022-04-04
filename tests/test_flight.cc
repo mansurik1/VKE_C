@@ -18,6 +18,7 @@ TEST(Notification, FORMAT_ERROR) {
 
   ASSERT_EQ(strcmp(test_output, right_output), 0)
       << "Program's output is incorrect";
+}
 
 TEST(Notification, MEMORY_ALLOCATION_ERROR) {
   char right_output[] =
