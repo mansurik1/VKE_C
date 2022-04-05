@@ -97,7 +97,7 @@ TEST(Buffer_grow, Copy_check) {
 }
 
 TEST(Get_string, Without_reallocation) {
-  char right_string[] = "123";
+  char right_string[] = "123\n";
   FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
 
   char* test_output = NULL;
