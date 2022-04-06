@@ -97,12 +97,12 @@ TEST(Buffer_grow, Copy_check) {
 }
 
 TEST(Get_string, Without_reallocation) {
-  char input_string[] = "123\n";
   char right_string[] = "123";
-  FILE* input_file = fmemopen(input_string, sizeof(input_string), "r");
+  FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
 
   char* test_output = NULL;
-  get_string(input_file, &test_output, NULL, '\n');
+  get_string(input_file, &test_output, NULL, '\0');
+  fclose(input_file);
 
   EXPECT_EQ(strcmp(test_output, right_string), 0);
   free(test_output);
