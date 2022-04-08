@@ -6,6 +6,19 @@ on:
 
 jobs:
 
+  Static:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Lint
+        run: make lint
+
+      - name: Format
+        run: make format
+
   ConfigureCMake:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
@@ -82,34 +95,6 @@ jobs:
           name: complete_build_dir
           path: ${{ github.workspace }}/build
 
-  Tests:
-    runs-on: ubuntu-latest
-    container: mans02/c-hw-image
-    needs: [Build]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Download complete build dir
-        uses: actions/download-artifact@v3
-        with:
-          name: complete_build_dir
-          path: ${{ github.workspace }}/build
-
-      - name: Launch tests
-        working-directory: ${{ github.workspace }}/build
-        run: make tests -f ../Makefile
-
-      - name: Check code coverage
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ${{ github.workspace }}/build/coverage.info
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
-
   Valgrind:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
@@ -147,15 +132,30 @@ jobs:
       - name: Run thread sanitizer
         run: make thread
 
-  Static:
+  Tests:
     runs-on: ubuntu-latest
     container: mans02/c-hw-image
+    needs: [Build, Valgrind, Sanitize]
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Lint
-        run: make lint
+      - name: Download complete build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: complete_build_dir
+          path: ${{ github.workspace }}/build
 
-      - name: Format
-        run: make format
+      - name: Launch tests
+        working-directory: ${{ github.workspace }}/build
+        run: make tests -f ../Makefile
+
+      - name: Check code coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ github.workspace }}/build/coverage.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true

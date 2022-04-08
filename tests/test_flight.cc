@@ -136,6 +136,17 @@ TEST(Get_string, With_reallocation) {
   free(test_output);
 }
 
+TEST(Safe_string_input, Input_file_NULL) {
+  FILE* input_file = nullptr;
+  char* test_output = nullptr;
+
+  int error_code = safe_string_input(input_file, &test_output, nullptr);
+
+  ASSERT_EQ(error_code, PASSED_ARGUMENTS_ERROR);
+  //  On passed arguments error, the safe_get_string method doesn't allocate
+  //  memory, so free command isn't required
+}
+
 TEST(Whole_program, two_flights) {
   char input[] =
       "2\nABC13\nSVO\nVKO\n75\n234.5\nCAB14\nSVO\nVKO\n95\n113.454\nSVO\nVKO\n";

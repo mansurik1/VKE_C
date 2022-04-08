@@ -1,4 +1,12 @@
-.PHONY: configure fbinfer scan-build build tests valgrind address thread lint format
+.PHONY: lint format configure fbinfer scan-build build valgrind address thread tests
+
+lint:
+	chmod +x scripts/linters.sh
+	./scripts/linters.sh
+
+format:
+	chmod +x scripts/formatters.sh
+	./scripts/formatters.sh
 
 configure:
 	cmake -DBUILD_TESTS=on -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B build
@@ -11,13 +19,6 @@ scan-build:
 
 build:
 	make
-
-tests:
-	# Testing
-	chmod +x tests/flight_test
-	./tests/flight_test
-	# Analyzing coverage
-	lcov -t "tests/flight_test" -o coverage.info -c -d flight_lib
 
 valgrind:
 	chmod +x scripts/valgrind.sh
@@ -33,10 +34,9 @@ thread:
 	chmod +x scripts/sanitizer_thread.sh
 	./scripts/sanitizer_thread.sh
 
-lint:
-	chmod +x scripts/linters.sh
-	./scripts/linters.sh
-
-format:
-	chmod +x scripts/formatters.sh
-	./scripts/formatters.sh
+tests:
+	# Testing
+	chmod +x tests/flight_test
+	./tests/flight_test
+	# Analyzing coverage
+	lcov -t "tests/flight_test" -o coverage.info -c -d flight_lib
