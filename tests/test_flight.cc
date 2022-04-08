@@ -108,6 +108,18 @@ TEST(Get_string, Without_reallocation) {
   free(test_output);
 }
 
+TEST(Get_string, With_reallocation) {
+  char right_string[] = "1234567890";
+  FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
+
+  char* test_output = nullptr;
+  get_string(input_file, &test_output, nullptr, '\0');
+  fclose(input_file);
+
+  EXPECT_EQ(strcmp(test_output, right_string), 0);
+  free(test_output);
+}
+
 TEST(Whole_program, two_flights) {
   char input[] =
       "2\nABC13\nSVO\nVKO\n75\n234.5\nCAB14\nSVO\nVKO\n95\n113.454\nSVO\nVKO\n";
