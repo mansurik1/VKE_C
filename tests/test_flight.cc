@@ -54,8 +54,8 @@ TEST(Buffer_grow, Length_check) {
   const int OLD_LENGTH = 5;
   const int NEW_LENGTH = 3;
 
-  char* buffer = NULL;
-  if ((buffer = (char*)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
+  char* buffer = nullptr;
+  if ((buffer = (char*)malloc(sizeof(char) * OLD_LENGTH)) == nullptr) {
     FAIL() << "Memory allocation error";
   }
 
@@ -69,8 +69,8 @@ TEST(Buffer_grow, Copy_check) {
   const int OLD_LENGTH = 3;
   const int NEW_LENGTH = 5;
 
-  char* buffer = NULL;
-  if ((buffer = (char*)malloc(sizeof(char) * OLD_LENGTH)) == NULL) {
+  char* buffer = nullptr;
+  if ((buffer = (char*)malloc(sizeof(char) * OLD_LENGTH)) == nullptr) {
     FAIL() << "Memory allocation error";
   }
 
@@ -100,8 +100,8 @@ TEST(Get_string, Without_reallocation) {
   char right_string[] = "123";
   FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
 
-  char* test_output = NULL;
-  get_string(input_file, &test_output, NULL, '\0');
+  char* test_output = nullptr;
+  get_string(input_file, &test_output, nullptr, '\0');
   fclose(input_file);
 
   EXPECT_EQ(strcmp(test_output, right_string), 0);
@@ -109,6 +109,21 @@ TEST(Get_string, Without_reallocation) {
 }
 
 TEST(Whole_program, two_flights) {
+  char input[] =
+      "2\nABC13\nSVO\nVKO\n75\n234.5\nCAB14\nSVO\nVKO\n95\n113.454\nSVO\nVKO\n";
+
+  FILE* input_file = fmemopen(input, sizeof(input), "r");
+
+  char* test_output = new char[1253];
+  FILE* output_file = fmemopen(test_output, sizeof(char) * 1253, "w");
+
+  execute_program(input_file, output_file);
+
+  putc('!', output_file);
+
+  fclose(input_file);
+  fclose(output_file);
+
   char* right_output = new char[1253];
   memcpy(
       right_output,
@@ -132,21 +147,6 @@ TEST(Whole_program, two_flights) {
       "CAB14\nDeparture airport code: SVO\nArrival airport code: VKO\nFlight "
       "duration: 95 minutes\nFlight cost: $113.454002\n",
       sizeof(char) * 1253);
-
-  char input[] =
-      "2\nABC13\nSVO\nVKO\n75\n234.5\nCAB14\nSVO\nVKO\n95\n113.454\nSVO\nVKO\n";
-
-  FILE* input_file = fmemopen(input, sizeof(input), "r");
-
-  char* test_output = new char[1253];
-  FILE* output_file = fmemopen(test_output, sizeof(char) * 1253, "w");
-
-  execute_program(input_file, output_file);
-
-  putc('\0', output_file);
-
-  fclose(input_file);
-  fclose(output_file);
 
   EXPECT_EQ(strcmp(test_output, right_output), 0);
 
