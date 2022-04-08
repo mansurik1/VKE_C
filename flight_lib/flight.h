@@ -33,5 +33,6 @@ int execute_program(FILE *, FILE *);
 void display_notification(FILE *, int);
 int grow_buffer(char **, size_t, size_t);
 int get_string(FILE *, char **, size_t *, char);
+int safe_string_input(FILE *, char **, size_t *);
 
 #endif  // _HW1_FLIGHT_LIB_FLIGHT_H_

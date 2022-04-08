@@ -101,10 +101,18 @@ TEST(Get_string, Without_reallocation) {
   FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
 
   char* test_output = nullptr;
-  get_string(input_file, &test_output, nullptr, '\0');
+  int error_code = get_string(input_file, &test_output, nullptr, '\0');
   fclose(input_file);
 
-  EXPECT_EQ(strcmp(test_output, right_string), 0);
+  if (error_code == NO_ERROR) {
+    EXPECT_EQ(strcmp(test_output, right_string), 0)
+        << "Data from input file and generated string don't match";
+  } else {
+    //  On error, the get_string method frees the memory, so the test should
+    //  interrupt at that point.
+    FAIL() << "Memory allocation error";
+  }
+
   free(test_output);
 }
 
@@ -113,10 +121,18 @@ TEST(Get_string, With_reallocation) {
   FILE* input_file = fmemopen(right_string, sizeof(right_string), "r");
 
   char* test_output = nullptr;
-  get_string(input_file, &test_output, nullptr, '\0');
+  int error_code = get_string(input_file, &test_output, nullptr, '\0');
   fclose(input_file);
 
-  EXPECT_EQ(strcmp(test_output, right_string), 0);
+  if (error_code == NO_ERROR) {
+    EXPECT_EQ(strcmp(test_output, right_string), 0)
+        << "Data from input file and generated string don't match";
+  } else {
+    //  On error, the get_string method frees the memory, so the test should
+    //  interrupt at that point.
+    FAIL() << "Memory allocation error";
+  }
+
   free(test_output);
 }
 
