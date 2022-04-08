@@ -1,0 +1,161 @@
+name: HW1
+
+on:
+  push:
+    branches: [ hw-1 ]
+
+jobs:
+
+  Static:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Lint
+        run: make lint
+
+      - name: Format
+        run: make format
+
+  ConfigureCMake:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure CMake
+        run: make configure
+
+      - name: Upload configured build dir
+        uses: actions/upload-artifact@v3
+        with:
+          name: configured_build_dir
+          path: ${{ github.workspace }}/build
+
+  FBinfer:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [ConfigureCMake]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download configured build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: configured_build_dir
+          path: ${{ github.workspace }}/build
+
+      - name: Run FBinfer
+        working-directory: ${{ github.workspace }}/build
+        run: make fbinfer -f ../Makefile
+
+  Scan-Build:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [ ConfigureCMake ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download configured build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: configured_build_dir
+          path: ${{ github.workspace }}/build
+
+      - name: Run Scan-Build
+        working-directory: ${{ github.workspace }}/build
+        run: make scan-build -f ../Makefile
+
+  Build:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [ConfigureCMake]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download configured build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: configured_build_dir
+          path: ${{ github.workspace }}/build
+
+      - name: Build
+        working-directory: ${{ github.workspace }}/build
+        run: make build -f ../Makefile
+
+      - name: Upload complete build dir
+        uses: actions/upload-artifact@v3
+        with:
+          name: complete_build_dir
+          path: ${{ github.workspace }}/build
+
+  Valgrind:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [Build]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download complete build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: complete_build_dir
+          path: ${{ github.workspace }}/build
+
+      - name: Run valgrind
+        run: make valgrind
+
+  Sanitize:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [Build]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download complete build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: complete_build_dir
+          path: ${{ github.workspace }}/build
+
+      - name: Run address sanitizer
+        run: make address
+
+      - name: Run thread sanitizer
+        run: make thread
+
+  Tests:
+    runs-on: ubuntu-latest
+    container: mans02/c-hw-image
+    needs: [Build, Valgrind, Sanitize]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download complete build dir
+        uses: actions/download-artifact@v3
+        with:
+          name: complete_build_dir
+          path: ${{ github.workspace }}/build
+
+      - name: Launch tests
+        working-directory: ${{ github.workspace }}/build
+        run: make tests -f ../Makefile
+
+      - name: Check code coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ github.workspace }}/build/coverage.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
