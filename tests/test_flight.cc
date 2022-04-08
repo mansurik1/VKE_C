@@ -114,8 +114,8 @@ TEST(Whole_program, two_flights) {
 
   FILE* input_file = fmemopen(input, sizeof(input), "r");
 
-  char* test_output = new char[1252];
-  FILE* output_file = fmemopen(test_output, sizeof(char) * 1252, "w");
+  char* test_output = new char[1253];
+  FILE* output_file = fmemopen(test_output, sizeof(char) * 1253, "w");
 
   execute_program(input_file, output_file);
 
@@ -124,7 +124,7 @@ TEST(Whole_program, two_flights) {
   fclose(input_file);
   fclose(output_file);
 
-  char* right_output = new char[1252];
+  char* right_output = new char[1253];
   memcpy(
       right_output,
       "Please enter the number of flights -> \nPlease enter the flight code of "
@@ -146,7 +146,7 @@ TEST(Whole_program, two_flights) {
       "$234.500000\n\nMost advantageous air ticket:\nFlight code: "
       "CAB14\nDeparture airport code: SVO\nArrival airport code: VKO\nFlight "
       "duration: 95 minutes\nFlight cost: $113.454002\n",
-      sizeof(char) * 1252);
+      sizeof(char) * 1253);
 
   EXPECT_EQ(strcmp(test_output, right_output), 0);
 
